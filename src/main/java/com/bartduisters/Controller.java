@@ -102,6 +102,9 @@ public class Controller implements Initializable, NativeKeyListener {
         int colIndex = pixelTable.getFocusModel().getFocusedCell().getColumn();
         DataRow selectionModel = pixelTable.getSelectionModel().getSelectedItem();
         String contentString = "";
+        if (colIndex == 0) {
+            contentString = String.valueOf(selectionModel.getIndex());
+        }
         if (colIndex == 1) {
             contentString = selectionModel.getColor();
         }
@@ -110,6 +113,9 @@ public class Controller implements Initializable, NativeKeyListener {
         }
         if (colIndex == 3) {
             contentString = String.valueOf(selectionModel.getY());
+        }
+        if (colIndex == 4) {
+            contentString = selectionModel.getKey();
         }
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent content = new ClipboardContent();
