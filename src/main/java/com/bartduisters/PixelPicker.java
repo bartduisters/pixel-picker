@@ -15,7 +15,7 @@ public class PixelPicker extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main-ui.fxml"));
         primaryStage.setTitle("Pixel Picker");
-        primaryStage.setScene(new Scene(root, 300, 450));
+        primaryStage.setScene(new Scene(root, 450, 450));
         primaryStage.show();
     }
 }

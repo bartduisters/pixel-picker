@@ -1,6 +1,7 @@
 package com.bartduisters;
 
 import com.bartduisters.models.DataRow;
+import com.bartduisters.services.JavaFxDispatchService;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,11 +20,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.robot.Robot;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Controller implements Initializable {
+public class Controller implements Initializable, NativeKeyListener {
+    private final Robot robot = new Robot();
     int i = 0;
     @FXML
     private Circle colorCircle;
@@ -36,24 +44,16 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Robot robot = new Robot();
+        System.out.println("Initialize");
+        registerNativeHook();
         createTable();
         final Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.millis(100),
                         event -> {
-                            int x = (int) robot.getMouseX();
-                            int y = (int) robot.getMouseY();
-                            Color color = robot.getPixelColor(x, y);
-                            colorCircle.setFill(color);
-                            String colorString = "#" + color.toString().substring(2, 8);
-                            colorText.setText(colorString);
-                            coordinatesText.setText("x: " + x + "y: " + y);
-                            if (i < 101) {
-                                DataRow entry = new DataRow(i, colorString, x, y);
-                                pixelTable.getItems().add(entry);
-                            }
-                            i++;
+                            colorCircle.setFill(getColor());
+                            colorText.setText(getColorString());
+                            coordinatesText.setText("x: " + getX() + "y: " + getY());
                         }
                 )
         );
@@ -75,8 +75,11 @@ public class Controller implements Initializable {
         TableColumn yCol = new TableColumn("Y");
         yCol.setCellValueFactory(new PropertyValueFactory<>("y"));
 
+        TableColumn keyCol = new TableColumn("Key");
+        keyCol.setCellValueFactory(new PropertyValueFactory<>("key"));
+
         pixelTable.getColumns().clear();
-        pixelTable.getColumns().addAll(indexCol, colorCol, xCol, yCol);
+        pixelTable.getColumns().addAll(indexCol, colorCol, xCol, yCol, keyCol);
 
         pixelTable.getSelectionModel().setCellSelectionEnabled(true);
         pixelTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -114,4 +117,51 @@ public class Controller implements Initializable {
         clipboard.setContent(content);
     }
 
+    @Override
+    public void nativeKeyTyped(NativeKeyEvent nativeKeyEvent) {
+
+    }
+
+    @Override
+    public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
+        i++;
+        DataRow entry = new DataRow(i, getColorString(), getX(), getY(), NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()));
+        pixelTable.getItems().add(entry);
+    }
+
+    @Override
+    public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
+
+    }
+
+    private void registerNativeHook() {
+        GlobalScreen.setEventDispatcher(new JavaFxDispatchService());
+
+        try {
+            GlobalScreen.registerNativeHook();
+        } catch (NativeHookException e) {
+            e.printStackTrace();
+        }
+
+        GlobalScreen.addNativeKeyListener(this);
+
+        Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+        logger.setLevel(Level.OFF);
+    }
+
+    private int getX() {
+        return (int) robot.getMouseX();
+    }
+
+    private int getY() {
+        return (int) robot.getMouseY();
+    }
+
+    private Color getColor() {
+        return robot.getPixelColor(getX(), getY());
+    }
+
+    private String getColorString() {
+        return "#" + getColor().toString().substring(2, 8);
+    }
 }

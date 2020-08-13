@@ -8,12 +8,14 @@ public class DataRow {
     SimpleStringProperty color;
     SimpleIntegerProperty x;
     SimpleIntegerProperty y;
+    SimpleStringProperty key;
 
-    public DataRow(int index, String color, Integer x, Integer y) {
+    public DataRow(int index, String color, Integer x, Integer y, String key) {
         this.index = new SimpleIntegerProperty(index);
         this.color = new SimpleStringProperty(color);
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.key = new SimpleStringProperty(key);
     }
 
     public int getIndex() {
@@ -46,5 +48,13 @@ public class DataRow {
 
     public void setY(int y) {
         this.y.set(y);
+    }
+
+    public String getKey() {
+        return key.get();
+    }
+
+    public void setKey(String key) {
+        this.key.set(key);
     }
 }

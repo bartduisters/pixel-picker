@@ -10,6 +10,7 @@
       <ColumnConstraints />
       <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
@@ -28,7 +29,7 @@
       <Circle fx:id="colorCircle" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowSpan="2" />
       <Label fx:id="colorText" text="Color" GridPane.columnIndex="1" />
       <Label fx:id="coordinatesText" text="x: 1111 y: 1111" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TableView fx:id="pixelTable" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="9">
+      <TableView fx:id="pixelTable" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="9">
         <columns>
           <TableColumn editable="false" minWidth="-Infinity" prefWidth="50.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />

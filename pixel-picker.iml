@@ -20,5 +20,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:linux:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:linux:14" level="project" />
+    <orderEntry type="library" name="Maven: com.1stleg:jnativehook:2.1.0" level="project" />
   </component>
 </module>
