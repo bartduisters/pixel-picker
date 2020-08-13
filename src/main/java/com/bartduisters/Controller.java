@@ -5,6 +5,7 @@ import com.bartduisters.services.JavaFxDispatchService;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -32,7 +33,9 @@ import java.util.logging.Logger;
 
 public class Controller implements Initializable, NativeKeyListener {
     private final Robot robot = new Robot();
-    int i = 0;
+    private int i = 0;
+    private boolean isKeyListenerRegistered = false;
+
     @FXML
     private Circle colorCircle;
     @FXML
@@ -41,11 +44,31 @@ public class Controller implements Initializable, NativeKeyListener {
     private Label coordinatesText;
     @FXML
     private TableView<DataRow> pixelTable;
+    @FXML
+    private Label infoLabel;
+
+    @FXML
+    private void handleStartButton(ActionEvent event) {
+        registerKeyListener();
+        infoLabel.setText("Recording - press any key");
+    }
+
+    @FXML
+    private void handleStopButton(ActionEvent event) {
+        removeKeyListener();
+        infoLabel.setText("Stopped");
+    }
+
+    @FXML
+    private void handleClearButton(ActionEvent event) {
+        pixelTable.getItems().clear();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Initialize");
+        infoLabel.setText("Recording - press any key");
         registerNativeHook();
+        registerKeyListener();
         createTable();
         final Timeline timeline = new Timeline(
                 new KeyFrame(
@@ -149,10 +172,22 @@ public class Controller implements Initializable, NativeKeyListener {
             e.printStackTrace();
         }
 
-        GlobalScreen.addNativeKeyListener(this);
-
         Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
         logger.setLevel(Level.OFF);
+    }
+
+    private void registerKeyListener() {
+        if (!isKeyListenerRegistered) {
+            GlobalScreen.addNativeKeyListener(this);
+            isKeyListenerRegistered = true;
+        }
+    }
+
+    private void removeKeyListener() {
+        if (isKeyListenerRegistered) {
+            GlobalScreen.removeNativeKeyListener(this);
+            isKeyListenerRegistered = false;
+        }
     }
 
     private int getX() {
