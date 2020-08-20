@@ -9,9 +9,8 @@ Clicking a cell will copy the value of the cell to the clipboard.
 ![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example-win.png)
 
 ## Requirements
-Have Java installed. The project has been created with [OpenJDK 14](https://jdk.java.net/14/).
-
-To automatically configure Java, download and install [AdoptOpenJDK Prebuilt OpenJDK](https://adoptopenjdk.net/)
+Have Java installed.
+To automatically configure Java, download and install [AdoptOpenJDK Prebuilt OpenJDK](https://adoptopenjdk.net/).
 
 ## Usage
 Java has to be installed (see Requirements)!
@@ -32,7 +31,7 @@ From the root of the project:
 
 ## Developers
 The tools used to develop the application:
-- Java - [OpenJDK 14](https://jdk.java.net/14/)
+- Java - [OpenJDK 14](https://jdk.java.net/14/) - prebuilt binaries can be downloaded from [AdoptOpenJDK Prebuilt OpenJDK](https://adoptopenjdk.net/)
 - [IntelliJ Community Edition](https://www.jetbrains.com/idea/)
     - Add [JavaFX](https://www.jetbrains.com/help/idea/javafx.html#add-javafx-lib)
     - Add [VM Options](https://www.jetbrains.com/help/idea/javafx.html#vm-options)
