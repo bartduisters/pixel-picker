@@ -5,6 +5,8 @@ On key press it will log the current hovered pixel into a table.
 Clicking a cell copy the value in the cell to the clipboard.
 
 ![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example.png)
+![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example-mac.png)
+![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example-win.png)
 
 ## Requirements
 Have Java installed. The project has been created with [OpenJDK 14](https://jdk.java.net/14/).
