@@ -2,7 +2,7 @@
 A cross-platform pixel picker tool. It will enable users to record keys and pixel information.
 
 On key press it will log the current hovered pixel into a table. 
-Clicking a cell copy the value in the cell to the clipboard.
+Clicking a cell will copy the value of the cell to the clipboard.
 
 ![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example.png)
 ![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example-mac.png)
@@ -17,7 +17,7 @@ To automatically configure Java, download and install [AdoptOpenJDK Prebuilt Ope
 Java has to be installed (see Requirements)!
 - Download the [latest release](https://github.com/bartduisters/pixel-picker/releases/) (.jar)
 - Open command prompt/terminal and navigate to the directory containing the .jar
-- In the command prompt/terminal type in `java -jar pixe-picker.jar` and press Enter
+- In the command prompt/terminal type in `java -jar pixel-picker.jar` and press Enter
 
 # Developers
 ## Install dependencies
