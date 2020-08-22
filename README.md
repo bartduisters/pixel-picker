@@ -11,8 +11,11 @@ To automatically configure Java, download and install [AdoptOpenJDK Prebuilt Ope
 ## Usage
 Java has to be installed (see Requirements)!
 - Download the [latest release](https://github.com/bartduisters/pixel-picker/releases/)
-- Windows/Mac: Download the .zip, unzip, double click `pixel-picker.jar`
 - Linux: Download the .jar, in the terminal type in `java -jar pixel-picker.jar` and press enter
+- Mac: Download the .jar, double click `pixel-picker.jar`
+    - New versions might need to give Java permissions for accessibility and screen recording
+    - If double clicking does not work, open a terminal and type in `java -jar pixel-picker.jar` and press enter
+- Windows: Download the .jar, double click `pixel-picker.jar`
 
 ![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example.png)
 ![](https://bartduisters.com/products/pixel-picker/1-0-0/pixel-picker-example-mac.png)
