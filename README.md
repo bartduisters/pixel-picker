@@ -6,7 +6,7 @@ Clicking a cell will copy the value of the cell to the clipboard.
 
 ## Requirements
 Have Java installed.
-To automatically configure Java, download and install [AdoptOpenJDK Prebuilt OpenJDK](https://adoptopenjdk.net/).
+To automatically configure Java, download and install [Adoptium Prebuilt OpenJDK](https://adoptium.net).
 
 ## Usage
 Java has to be installed (see Requirements)!
